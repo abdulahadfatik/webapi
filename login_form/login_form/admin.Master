@@ -1,0 +1,159 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="admin.master.cs" Inherits="login_form.admin" %>
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <title></title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="DataTables-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="fontawesome-free-5.15.4-web/css/all.css" rel="stylesheet" />
+    <link href="StyleSheet1.css" rel="stylesheet" />
+    <script src="js/all.min.js"></script>
+    <script src="bootstrap-4.0.0/assets/js/vendor/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form2" runat="server">
+        <div>
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <img src="imgs/icons8-cooking-64.png" />
+                <button class="navbar-toggler" type="button" data-toggler="collapse" data-target="#navbarSupportedContent" 
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle naigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+  <a class="navbar-brand mr-auto" href="#">Bed pack cooking</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="WebForm1.aspx">Home <span class="sr-only">(current)</span></a>
+
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="adminlogin.aspx">Admin <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="user.aspx">user <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">vloge</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dishes
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Chicken</a>
+          <a class="dropdown-item" href="#">Mutton</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+        </div>
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-4 my-sm-0" type="submit">Search</button>
+                </nav>
+        </div>
+        <!-- Main content -->
+            <div class="content">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                <link href="css/all.css" rel="stylesheet" />
+            </asp:ContentPlaceHolder>
+                </div>
+          <!-- Footer -->
+        <footer class="page-footer font-small brown pt-4">
+            <div id="footer1" class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                        <p>
+                            <asp:LinkButton class="footerlinks" ID="LinkButton7" runat="server">Admin Login</asp:LinkButton>
+                            &nbsp
+                            <asp:LinkButton class="footerlinks" ID="LinkButton8" runat="server">Author Management</asp:LinkButton>
+                            &nbsp;
+                            <asp:LinkButton class="footerlinks" ID="LinkButton9" runat="server">Publisher Management</asp:LinkButton>
+                            &nbsp;
+                            <asp:LinkButton class="footerlinks" ID="LinkButton10" runat="server">Book Inventory</asp:LinkButton>
+                            &nbsp;
+                            <asp:LinkButton class="footerlinks" ID="LinkButton11" runat="server">Book Issue</asp:LinkButton>
+                            &nbsp;
+                            <asp:LinkButton class="footerlinks" ID="LinkButton12" runat="server">Member Management</asp:LinkButton>
+                            &nbsp;
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div id="footer2" class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                        <p stylesheet="color:whitesmoke">&copy
+                            All Right Reserved
+                            <a class="footerlinks" href="#" target="_blank">
+                                Sample Snipppots
+                            </a></p>
+                    </div>
+                </div>
+            </div>
+         </footer>
+<!-- Footer -->    
+    </form>
+    <script>
+
+
+        const form = {
+            admin_id: document.getElementById("admin_id"),
+            pwd: document.getElementById("pwd"),
+            submit: document.getElementById("submit"),
+            message: document.getElementById("form-message")
+        };
+
+        form.submit.addEventListener("click", () => {
+            const request = new XMLHttpRequest();
+
+            request.onload = () => {
+                let responseObject = null;
+
+                try {
+                    responseObject = JSON.parse(request.responseText);
+                } catch (e) {
+                    console.error('conld not parse JSON');
+                }
+
+                if (responseObject) {
+                    handleResponse(responseObject);
+                }
+            };
+
+            const requestData = 'admin_id = $(form.admin_id.value) & pwd=$(form.pwd.value)';
+            console.log(requestData);
+
+            request.open('post', 'validate.php');
+            request.setRequestHeader('Content-type', 'applicaiton/x-www-form-urlencoded');
+            request.send(requestData);
+        });
+
+        function handleResponse(responseObject) {
+            if (responseObject.ok) {
+                location.href = "Home.aspx"
+            } else {
+                while (form.message.firstChild) {
+                    form.message.removeChild(from.message.firstChild);
+                }
+
+                responseObject.message.forEach((message) => {
+                    const li = document.createElement('li');
+                    li.textContent = message;
+                    form.message.appendChild(li);
+                });
+
+                form.message.style.display = "block";
+            }
+        }
+
+    </script>
+</body>
+</html>

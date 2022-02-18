@@ -1,0 +1,29 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="work.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <link href="AdminLTE/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="AdminLTE/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="AdminLTE/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+        <link href="AdminLTE/css/morris/morris.css" rel="stylesheet" type="text/css" />
+        <link href="AdminLTE/css/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+        <link href="AdminLTE/css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
+        <link href="AdminLTE/css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+        <link href="AdminLTE/css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
+        <link href="AdminLTE/css/AdminLTE.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
