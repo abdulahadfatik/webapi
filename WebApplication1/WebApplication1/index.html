@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="Scripts/jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#btn').click(function () {
+                debugger
+                $.ajax({
+                    url: 'https://localhost:5001/api/Employee',
+                    type: 'GET',
+                    //dataType: 'jsonp',
+                    cors: true,
+                    secure: true,
+                    crossDomain: true,
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                    },
+                    success: function () {
+                        debugger
+                        console.log('Success Called');
+                    }
+                }).
+                    done(function () {
+                        console.log('SuccessCalled');
+                        var ulEmployee = $('#ulEmployee');
+                        ulEmployee.empty();
+                        $.each(data, function (index, val) {
+                            var ID = val.EmployeeId;
+                            ulEmployee.append('<li>' + ID + '</li>')
+                        });
+                    });
+            });
+        });
+    </script>
+</head >
+<body>
+    <input id="btn" type="button" value="Get All Employees" />
+    <ul id="ulEmployee"></ul>
+</body>
+</html >

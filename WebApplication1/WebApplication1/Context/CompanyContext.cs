@@ -2,14 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using WebApplication1.Models;
 
 namespace WebApplication1.Context
 {
-    using Microsoft.EntityFrameworkCore;
-    using WebApplication1.Models;
-    using System.Linq;
-    using WebApplication1.Models;
-
     public class CompanyContext:DbContext
     {
         public CompanyContext(DbContextOptions<CompanyContext> options) : base(options)

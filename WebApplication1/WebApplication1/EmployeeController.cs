@@ -17,8 +17,8 @@ namespace WebApplication1
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        private CompanyContext _companyContext;
 
+        private CompanyContext _companyContext;
         public EmployeeController(CompanyContext companyContext)
         {
             _companyContext = companyContext;
