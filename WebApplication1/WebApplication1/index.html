@@ -3,42 +3,20 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
-    <script src="Scripts/jquery-3.4.1.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-
-            $('#btn').click(function () {
-                debugger
-                $.ajax({
-                    url: 'https://localhost:5001/api/Employee',
-                    type: 'GET',
-                    //dataType: 'jsonp',
-                    cors: true,
-                    secure: true,
-                    crossDomain: true,
-                    headers: {
-                        'Access-Control-Allow-Origin': '*',
-                    },
-                    success: function () {
-                        debugger
-                        console.log('Success Called');
-                    }
-                }).
-                    done(function () {
-                        console.log('SuccessCalled');
-                        var ulEmployee = $('#ulEmployee');
-                        ulEmployee.empty();
-                        $.each(data, function (index, val) {
-                            var ID = val.EmployeeId;
-                            ulEmployee.append('<li>' + ID + '</li>')
-                        });
-                    });
-            });
-        });
-    </script>
 </head >
 <body>
-    <input id="btn" type="button" value="Get All Employees" />
-    <ul id="ulEmployee"></ul>
+
+    <script src="Scripts/jquery-3.4.1.js"></script>
+    <script src="Employee.js"></script>
+    <div class="d-flex justify-content-center">
+        <div class="spinner-border"
+             role="status" id="loading">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <h1>Registered Employees</h1>
+    <!-- table for showing data -->
+    <input id="employees" type="button" value="Get All Employees" />
+    <table id="employees"></table>
 </body>
 </html >

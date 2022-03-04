@@ -27,6 +27,7 @@ namespace WebApplication1
         [HttpGet]
         public IEnumerable<Employee> Get()
         {
+
             return _companyContext.Employee;
         }
 
@@ -34,6 +35,7 @@ namespace WebApplication1
         [HttpGet("{id}")]
         public Employee Get(int id)
         {
+
             return _companyContext.Employee.FirstOrDefault(s => s.EmployeeId == id);
         }
 
@@ -41,6 +43,7 @@ namespace WebApplication1
         [HttpPost]
         public void Post([FromBody] Employee value)
         {
+           
             _companyContext.Employee.Add(value);
             _companyContext.SaveChanges();
         }

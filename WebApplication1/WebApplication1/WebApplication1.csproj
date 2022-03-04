@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
     <None Include="bootstrap-4.0.0\.github\CONTRIBUTING.md" />
     <None Include="bootstrap-4.0.0\.github\ISSUE_TEMPLATE.md" />
   </ItemGroup>

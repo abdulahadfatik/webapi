@@ -1,5 +1,17 @@
-﻿const api_url =
+﻿
+
+const { Script } = require("vm");
+const api_url =
     "https://localhost:5001/api/Employee";
+
+const cors = require("cors");
+const corsOptions = {
+    origin: '*',
+    credentials: true,            //access-control-allow-credentials:true
+    optionSuccessStatus: 200,
+}
+
+app.use(cors(corsOptions)) // Use this after the variable declaration
 
 // Defining async function
 async function getapi(url) {
@@ -40,15 +52,15 @@ function show(data) {
     // Loop to access all rows 
     for (let r of data.list) {
         tab += `<tr> 
-    <td>${r.EmployeeId} </td>
-    <td>${r.EmployeeName}</td>
-    <td>${r.DateOfBirth}</td> 
-    <td>${r.Gender}</td>
-    <td>${r.CurrentAddress}</td>
-    <td>${r.PermanentAddress}</td>
-    <td>${r.City}</td>
-    <td>${r.Nationality}</td>
-    <td>${r.PINCode}</td>
+    <td>${r.employeeId} </td>
+    <td>${r.employeeName}</td>
+    <td>${r.dateOfBirth}</td>
+    <td>${r.gender}</td>
+    <td>${r.currentAddress}</td>
+    <td>${r.permanentAddress}</td>
+    <td>${r.city}</td>
+    <td>${r.nationality}</td>
+    <td>${r.pinCode}</td>
     </tr>`;
     }
     // Setting innerHTML as tab variable
